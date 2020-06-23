@@ -12,12 +12,11 @@ public class DataSourceConfig
     @Bean
     public DataSource getDataSource()
     {
-        return DataSourceBuilder
-                .create()
-                .driverClassName("org.sqlite.JDBC")
-                .url("jdbc:sqlite:./target/rlsdb.db")
-                .username("SA")
-                .password("")
-                .build();
+        return DataSourceBuilder.create()
+                                .driverClassName("org.sqlite.JDBC")
+                                .url("jdbc:sqlite:./target/rlsdb.db")
+                                .username("SA")
+                                .password("")
+                                .build();
     }
 }
