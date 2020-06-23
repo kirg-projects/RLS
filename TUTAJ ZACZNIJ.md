@@ -8,6 +8,8 @@
 
 * Po przypisaniu do siebie taska utwórz nowy branch z brancha master w formacie `cyfra issue-nazwa-twojego-issue`  np. 1-create-clean-build
 
+#####Bez tego nie możesz zacząć pracy
+
 ### Guides
 The following guides illustrate how to use some features concretely:
 
