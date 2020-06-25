@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.net.MalformedURLException;
-import java.security.NoSuchAlgorithmException;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -27,14 +26,7 @@ class LinkGeneratorTest
     }
 
     @Test
-    void generatedUniqueIdIsGreaterThanZero() throws NoSuchAlgorithmException
-    {
-        long value = linkGenerator.generateUniqueId();
-        assertTrue(value > 0);
-    }
-
-    @Test
-    void domainExistsInUrl() throws MalformedURLException, NoSuchAlgorithmException
+    void domainExistsInUrl() throws MalformedURLException
     {
         String fullUrl = linkGenerator.joinDomainUrlToUniqueId()
                                       .toString();
@@ -43,12 +35,12 @@ class LinkGeneratorTest
     }
 
     @Test
-    void digitsExistsInUrl() throws MalformedURLException, NoSuchAlgorithmException
+    void digitsExistsInUrl() throws MalformedURLException
     {
         String fullUrl = linkGenerator.joinDomainUrlToUniqueId()
                                       .toString();
 
         assertTrue(fullUrl.substring(BEGIN_INDEX_NUMBER)
-                          .matches("(\\d*)"));
+                          .matches("(\\d*\\w*.){5}"));
     }
 }

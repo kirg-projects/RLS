@@ -4,8 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
+import java.util.UUID;
 
 @Service
 public class LinkGenerator
@@ -13,18 +12,10 @@ public class LinkGenerator
 
     public static final String DOMAIN_URL = "http://mydomain.com/extra/";
 
-    public long generateUniqueId() throws NoSuchAlgorithmException
+    public URL joinDomainUrlToUniqueId() throws MalformedURLException
     {
-        return SecureRandom.getInstance("SHA1PRNG")
-                           .longs(0, Long.MAX_VALUE)
-                           .findFirst()
-                           .orElseThrow();
-    }
+        String uuid = String.valueOf(UUID.randomUUID());
 
-    public URL joinDomainUrlToUniqueId() throws NoSuchAlgorithmException, MalformedURLException
-    {
-        String uniqueId = String.valueOf(this.generateUniqueId());
-
-        return new URL(DOMAIN_URL.concat(uniqueId));
+        return new URL(DOMAIN_URL.concat(uuid));
     }
 }
