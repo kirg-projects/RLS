@@ -14,7 +14,7 @@ public class LinkGenerator
 
     public URL joinDomainUrlToUniqueId() throws MalformedURLException
     {
-        String uuid = String.valueOf(UUID.randomUUID());
+        String uuid = UUID.randomUUID().toString();
 
         return new URL(DOMAIN_URL.concat(uuid));
     }
