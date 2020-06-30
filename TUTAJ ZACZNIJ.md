@@ -11,7 +11,7 @@
 
 ### Guides
 
-####Workflow Feature Branch i Kanban
+#### Workflow Feature Branch i Kanban
 Pracujemy w systemie zwanym Feature Branch - wygląda w skrócie to tak: branch Master jest nietykalny i służy tylko do pobierania zatwierdzonych,
 sprawdzonych zmian z innych branchy, jest branchem który zawsze działa i ma działać, nic do niego bezpośrednio nie pushujemy.
 Tu wkracza feature branch. Wybieramy sobie taska samemu(`Projects | Reference Links System | tablica ToDo`) przypisując siebie,
