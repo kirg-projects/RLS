@@ -1,5 +1,6 @@
 package pl.kirg.rls.service;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +19,14 @@ class LinkGeneratorTest
 
     @Autowired
     LinkGenerator linkGenerator;
+    private String generatedUrl;
+
+    @BeforeEach
+    void setUp() throws MalformedURLException
+    {
+        this.generatedUrl = linkGenerator.joinDomainUrlToUniqueId()
+                                         .toString();
+    }
 
     @Test
     void linkGeneratorExists()
@@ -26,21 +35,15 @@ class LinkGeneratorTest
     }
 
     @Test
-    void domainExistsInUrl() throws MalformedURLException
+    void domainExistsInUrl()
     {
-        String fullUrl = linkGenerator.joinDomainUrlToUniqueId()
-                                      .toString();
-
-        assertTrue(fullUrl.contains(DOMAIN_IN_URL));
+        assertTrue(generatedUrl.contains(DOMAIN_IN_URL));
     }
 
     @Test
-    void digitsExistsInUrl() throws MalformedURLException
+    void uuidExistsInUrl()
     {
-        String fullUrl = linkGenerator.joinDomainUrlToUniqueId()
-                                      .toString();
-
-        assertTrue(fullUrl.substring(BEGIN_INDEX_NUMBER)
-                          .matches("(\\d*\\w*.){5}"));
+        assertTrue(generatedUrl.substring(BEGIN_INDEX)
+                               .matches("(\\d*\\w*.){5}"));
     }
 }
