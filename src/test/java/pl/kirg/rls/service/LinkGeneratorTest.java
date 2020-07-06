@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class LinkGeneratorTest
 {
 
-    public static final int BEGIN_INDEX_NUMBER = 26;
+    public static final int BEGIN_INDEX = 26;
     public static final String DOMAIN_IN_URL = "mydomain";
 
     @Autowired
