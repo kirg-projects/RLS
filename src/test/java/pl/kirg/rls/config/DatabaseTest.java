@@ -2,7 +2,7 @@ package pl.kirg.rls.config;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -12,11 +12,11 @@ import javax.sql.DataSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
+@JdbcTest
 class DatabaseTest
 {
-
     private static final String TABLE_NAME = "MOCK_DATA";
+    private final int defaultAllRows = 1000;
     private JdbcTemplate jdbcTemplate;
 
     @BeforeEach
@@ -25,7 +25,7 @@ class DatabaseTest
         DataSource dataSource = new EmbeddedDatabaseBuilder().generateUniqueName(true)
                                                              .setType(EmbeddedDatabaseType.H2)
                                                              .setScriptEncoding("UTF-8")
-                                                             .addScripts("mock_data.sql")
+                                                             .addScripts(TABLE_NAME.toLowerCase().concat(".sql"))
                                                              .ignoreFailedDrops(true)
                                                              .build();
 
@@ -33,16 +33,15 @@ class DatabaseTest
     }
 
     @Test
-    public void countRowsInTable()
+    public void countRowsInTableByJdbc()
     {
-        final int defaultAllRows = 1000;
         int countRows = JdbcTestUtils.countRowsInTable(jdbcTemplate, TABLE_NAME);
 
-        assertEquals(defaultAllRows, countRows);
+        assertEquals(this.defaultAllRows, countRows);
     }
 
     @Test
-    public void deleteFromTableWhereIdIsGreaterThan200()
+    public void deleteFromTableWhereIdIsGreaterThan200ByJdbc()
     {
         final int expectedAfterWhereId = 200;
         JdbcTestUtils.deleteFromTableWhere(jdbcTemplate, TABLE_NAME, "id > 200");
@@ -52,7 +51,7 @@ class DatabaseTest
     }
 
     @Test
-    public void deleteFromTableWhereGenderEqualsFemale()
+    public void deleteFromTableWhereGenderEqualsFemaleByJdbc()
     {
         final int expectedAfterWhereGender = 492;
         JdbcTestUtils.deleteFromTableWhere(jdbcTemplate, TABLE_NAME, "gender = 'Female'");
@@ -62,7 +61,7 @@ class DatabaseTest
     }
 
     @Test
-    public void dropTables()
+    public void dropTablesByJdbc()
     {
         JdbcTestUtils.dropTables(jdbcTemplate, TABLE_NAME);
     }
