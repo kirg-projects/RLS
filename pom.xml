@@ -95,6 +95,11 @@
             <version>1.4.200</version>
             <scope>test</scope>
         </dependency>
+        <!--		    GUI				-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
