@@ -5,7 +5,17 @@
 1. Włącz w swoim IDE obsługę .editorconfig(ustawienia stylu/formatowania) bez tego nie będziemy mieć jednolitego stylu formatowania
 2. Ustaw line separator na LF i stosuj taki zawsze podczas commitowania. ( Line Separator: \n )
 3. Projekt korzysta z Lomboka, procesora adnotacji, musisz mieć to włączone w swoim IDE. np. dla IntelliJ jest to `File | Settings | Build, Execution, Deployment | Compiler | Annotation Processors` i tu zaznaczasz `Enable annotation processing` i `Obtain processors from project classpath`
-4. Po przypisaniu do siebie taska utwórz nowy branch z brancha master w formacie `cyfra issue-nazwa-twojego-issue`  np. 1-create-clean-build
+4. Każdy backendowiec powinien włączyć zaciąganie dokumentacji z API frameworka, chyba że zna całą na pamięć. W IJ robisz to tak `ALT+SHIFT+S > SDKS > DOCUMENTATION PATHS` tutaj dodajemy za pomocą '+' te ścieżki:
+
+    https://docs.oracle.com/en/java/javase/11/docs/api/
+
+    https://docs.spring.io/spring-security/site/docs/5.3.3.BUILD-SNAPSHOT/api/
+
+    https://docs.spring.io/spring/docs/5.2.6.RELEASE/javadoc-api/
+
+    https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/api/
+
+5. Po przypisaniu do siebie taska utwórz nowy branch z brancha master w formacie `cyfra issue-nazwa-twojego-issue`  np. 1-create-clean-build
 
 #### Bez tego nie zaczynasz pracy.
 
