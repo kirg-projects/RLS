@@ -1,6 +1,7 @@
 package pl.kirg.rls.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +20,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 {
 
     @Autowired
-    private DataSource dataSource;
+    @Qualifier("getDataSource")
+    DataSource dataSource;
 
     @Bean
     BCryptPasswordEncoder getPasswordEncoder()
@@ -33,8 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
         auth.jdbcAuthentication()
             .dataSource(dataSource)
             .usersByUsernameQuery("select username,password,enabled from users where username = ?")
-            .authoritiesByUsernameQuery("select username,authority from authorities where username = ?")
-            .withDefaultSchema();
+            .authoritiesByUsernameQuery("select username,authority from authorities where username = ?");
     }
 
     @Override
@@ -42,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
     {
 
         http.authorizeRequests()
-            .antMatchers("/**")
+            .antMatchers("/")
             .permitAll();
 
         http.sessionManagement()
