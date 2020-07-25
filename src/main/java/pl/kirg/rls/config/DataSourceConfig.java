@@ -14,7 +14,7 @@ public class DataSourceConfig
     {
         return DataSourceBuilder.create()
                                 .driverClassName("org.sqlite.JDBC")
-                                .url("jdbc:sqlite:./target/rlsdb.db")
+                                .url("jdbc:sqlite:./target/sqlite")
                                 .username("SA")
                                 .password("")
                                 .build();
