@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping(value = "/home")
+@RequestMapping(value = "/")
 public class HomeController {
 
 
     @GetMapping
     public String home(Model model){
-        model.addAttribute("name","HomeModel"); //TODO
-        return "vHome"; //TODO
+        model.addAttribute("name","HomeModel");
+        return "vHome";
     }
 
 
