@@ -3,6 +3,8 @@
 Zaraz po ściągnięciu z repo musimy wpisać komende :
 
 > npm init
+lub
+> npm install --save-dev  --unsafe-perm node-sass
 > Ma to na celu stworzenie folderu node_modules jest on niezbedny do pracy z node.js
 
 Żeby uruchomić front należy przenieść sie do folderu react i w terminalu wpisać :
