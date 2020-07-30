@@ -19,6 +19,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToMany
+    @JoinTable(
+        name = "products_in_orders",
+        joinColumns = {@JoinColumn(name = "order_id")},
+        inverseJoinColumns = {@JoinColumn(name = "product_id")}
+    )
     private List<Product> products;
    /*
     @OneToOne
