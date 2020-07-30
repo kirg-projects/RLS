@@ -1,5 +1,6 @@
 package pl.kirg.rls;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "products")
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @Getter
 @Setter
 public class Product {
