@@ -1,16 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "normalize.css/normalize.css";
+import AppRoutes from './routers/AppRouter'
 
-class JSX extends React.Component {
-    render() {
-        return (
-            <div>
-                <h1>Hello I`m JSX</h1>
-                <h3>This is test page</h3>
-            </div>
-        );
-    }
-}
-
-ReactDOM.render(<JSX />, document.getElementById("app"));
+ReactDOM.render(<AppRoutes />, document.getElementById("app"));

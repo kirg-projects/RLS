@@ -2,7 +2,7 @@
 
 Zaraz po ściągnięciu z repo musimy wpisać komende :
 
-> npm init
+> npm install
 lub
 > npm install --save-dev  --unsafe-perm node-sass
 > Ma to na celu stworzenie folderu node_modules jest on niezbedny do pracy z node.js
