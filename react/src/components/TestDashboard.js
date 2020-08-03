@@ -2,9 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 class TestDashboard extends React.Component {
-    constructor(props) {
-        super()
-    }
     render() {
         return (
             <div>
@@ -18,6 +15,10 @@ class TestDashboard extends React.Component {
     }
 }
 
+/*
+    Mapowanie stanów store na propsy componentu, w prosty sposób uzyskujemy dostep,
+    do wczesniej zapisanych daych, znajdują się one w props.userCrudentials
+*/
 const mapPropsToState = (state) => {
     return {
         userCrudentials: state

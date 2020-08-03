@@ -18,6 +18,12 @@ class TestLogin extends React.Component {
     }
 }
 
+/*
+    Mapowanie userActions na propsy componenta, pozwala na zapisanie do store okeślanych parametrów, za
+    pomocą prostej funkcji setUserCrudentials buttona, w celu wizualizacji rezultatu należy za pomocą Linka
+    przenieść sie do Dashbordu. Użycie Linka jest WYMAGANE, w innym przypadku nastąpi odświerzenie strony
+    a dane ze store zostaną 'wyczyszczone'
+*/
 const mapDispatchToProps = (dispatch) => {
     return {
         setUserCrudentials: (id, name, surname, email) => {

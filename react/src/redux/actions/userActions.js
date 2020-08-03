@@ -1,5 +1,4 @@
-import { createStore } from 'redux'
-
+//Actions creators - funkcje które przekazują do userReducer potrzebne informacje
 export const loginUser = ({ id, name, surname, email }) => {
     return {
         type: "LOGIN_SUCCESS",

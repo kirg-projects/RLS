@@ -5,10 +5,12 @@ import AppRoutes from './routers/AppRouter'
 import store from './redux/store/store'
 import { Provider } from 'react-redux'
 
+
 store.subscribe(() => {
     console.log(store.getState())
 })
 
+// Application root
 const app = (
     <Provider store={store}>
         <AppRoutes />
