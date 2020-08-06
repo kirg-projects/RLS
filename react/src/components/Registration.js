@@ -7,10 +7,17 @@ class Registration extends React.Component {
     constructor(){
         super(),
         this.state={
-
+            accountType:""
         }
+        this.handleChange=this.handleChange.bind(this)
     }
+    handleChange(event){
+        const {name, value}=event.target
+        this.setState({
+            [name]:value
+        })
 
+    }
     render() {
         return (
             <div>
@@ -22,12 +29,9 @@ class Registration extends React.Component {
                            <InputLabel htmlFor="age-native-simple">Account type</InputLabel>
                            <Select
                              native
-    //                       value={state.??}
-    //                       onChange={handleChange}
-//                           inputProps={{
-//                             name: 'age',
-//                             id: 'age-native-simple',
-//                           }}
+                             value={this.state.accountType}
+                             onChange={this.handleChange}
+                             name="accountType"
                            >
                              <option aria-label="None" value="" />
                              <option value={"osobaFizyczna"}>osoba fizyczna</option>
@@ -173,7 +177,19 @@ class Registration extends React.Component {
                           type="password"
                           id="rePassword"
 
-                      />
+                       />
+                       {this.state.accountType==="opiekun"
+                       ? <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="patronId"
+                            label="Patron ID"
+                            type="text"
+                            id="patronId"
+                         />
+                         : null}
                        <FormControlLabel
                            control={<Checkbox value="remember" color="primary" />}
                            label="Remember me"
