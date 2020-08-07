@@ -7,7 +7,8 @@ class Registration extends React.Component {
     constructor(){
         super(),
         this.state={
-            accountType:""
+            accountType:"",
+            birthDate:null
         }
         this.handleChange=this.handleChange.bind(this)
     }
@@ -16,7 +17,6 @@ class Registration extends React.Component {
         this.setState({
             [name]:value
         })
-
     }
     render() {
         return (
@@ -61,17 +61,37 @@ class Registration extends React.Component {
                           label="Last Name"
                           name="lastName"
                        />
-{/* TODO label nie może nachodzić na typ inputa */}
-                       <TextField
-                          variant="outlined"
-                          margin="normal"
-                          required
-                          fullWidth
-                          id="birthDate"
-                          type="date"
-                          label="Birth Date"
-                          name="birthDate"
-                       />
+                       {this.state.birthDate===null
+                       ? <TextField
+                           variant="outlined"
+                           margin="normal"
+                           required
+                           fullWidth
+                           id="birthDate"
+                           type="date"
+                           label="Birth Date"
+                           name="birthDate"
+                           value={this.state.birthDate}
+                           onChange={this.handleChange}
+                           InputProps={{
+                              style: {
+                                  color: "transparent"
+                              }
+                           }}
+                         />
+                       : <TextField
+                           variant="outlined"
+                           margin="normal"
+                           required
+                           fullWidth
+                           id="birthDate"
+                           type="date"
+                           label="Birth Date"
+                           name="birthDate"
+                           value={this.state.birthDate}
+                           onChange={this.handleChange}
+                         />
+                       }
                        <TextField
                           variant="outlined"
                           margin="normal"
@@ -196,7 +216,7 @@ class Registration extends React.Component {
                             fullWidth
                             name="NIP"
                             label="NIP"
-                            type="text"
+                            type="number"
                             id="NIP"
                          />
                          <TextField
