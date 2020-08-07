@@ -34,11 +34,11 @@ class Registration extends React.Component {
                              name="accountType"
                            >
                              <option aria-label="None" value="" />
-                             <option value={"osobaFizyczna"}>osoba fizyczna</option>
-                             <option value={"osobaFizycznaZDzielanoscia"}>osoba fizyczna z działalnością gospodarczą</option>
-                             <option value={"spolka"}>spółka</option>
-                             <option value={"zwykly"}>zwykły użytkownik</option>
-                             <option value={"opiekun"}>opiekun</option>
+                             <option value={"individual"}>osoba fizyczna</option>
+                             <option value={"individualWithEconomy"}>osoba fizyczna z działalnością gospodarczą</option>
+                             <option value={"partnership"}>spółka</option>
+                             <option value={"regular"}>zwykły użytkownik</option>
+                             <option value={"patron"}>opiekun</option>
                            </Select>
                        </FormControl>
                        <TextField
@@ -178,7 +178,40 @@ class Registration extends React.Component {
                           id="rePassword"
 
                        />
-                       {this.state.accountType==="opiekun"
+                       {this.state.accountType==="partnership"||this.state.accountType==="individualWithEconomy"
+                       ? <div><TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="companyName"
+                            label="Name of company"
+                            type="text"
+                            id="companyName"
+                         />
+                         <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="NIP"
+                            label="NIP"
+                            type="text"
+                            id="NIP"
+                         />
+                         <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="companyNumber"
+                            label="Company phone number"
+                            type="number"
+                            id="companyNumber"
+                         /></div>
+                       : null
+                       }
+                       {this.state.accountType==="patron"
                        ? <TextField
                             variant="outlined"
                             margin="normal"
@@ -189,7 +222,8 @@ class Registration extends React.Component {
                             type="text"
                             id="patronId"
                          />
-                         : null}
+                       : null
+                       }
                        <FormControlLabel
                            control={<Checkbox value="remember" color="primary" />}
                            label="Remember me"
