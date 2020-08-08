@@ -1,6 +1,7 @@
 import React from 'react'
 import {Typography,TextField, Button,FormControl,FormControlLabel,Grid,Link,Checkbox,NativeSelect,FormHelperText,InputLabel, Select  } from '@material-ui/core';
 
+{/* TODO wszystko poukładać żeby jakoś wyglądało */}
 class Registration extends React.Component {
     constructor(){
         super(),
@@ -12,8 +13,8 @@ class Registration extends React.Component {
             country:"",
             street:"",
             flatNumber:undefined,
-            zip:undefined,
-            zipError:false,
+            zip1:undefined,
+            zip2:undefined,
             city:"",
             phone:undefined,
             phoneError:false,
@@ -49,170 +50,196 @@ class Registration extends React.Component {
                 <Typography component="h1" variant="h5" color="primary" align="center">
                     Register
                 </Typography>
+                <br/>
                    <form noValidate>
-                       <FormControl fullWidth>
-                           <InputLabel htmlFor="age-native-simple">Account type</InputLabel>
-                           <Select
-                             native
-                             value={this.state.accountType}
-                             onChange={this.handleChange}
-                             name="accountType"
-                           >
-                             <option aria-label="None" value="" />
-                             <option value={"individual"}>osoba fizyczna</option>
-                             <option value={"individualWithEconomy"}>osoba fizyczna z działalnością gospodarczą</option>
-                             <option value={"partnership"}>spółka</option>
-                             <option value={"regular"}>zwykły użytkownik</option>
-                             <option value={"patron"}>opiekun</option>
-                           </Select>
-                       </FormControl>
-                       <TextField
-                          variant="outlined"
-                          margin="normal"
-                          required
-                          fullWidth
-                          id="firstName"
-                          type="text"
-                          label="First Name"
-                          name="firstName"
-                          value={this.state.firstName}
-                          onChange={this.handleChange}
-                       />
-                       <TextField
-                          variant="outlined"
-                          margin="normal"
-                          required
-                          fullWidth
-                          id="lastName"
-                          type="text"
-                          label="Last Name"
-                          name="lastName"
-                          value={this.state.lastName}
-                          onChange={this.handleChange}
-                       />
-                       {this.state.birthDate===undefined
-                       ? <TextField
-                           variant="outlined"
-                           margin="normal"
-                           required
-                           fullWidth
-                           id="birthDate"
-                           type="date"
-                           label="Birth Date"
-                           name="birthDate"
-                           value={this.state.birthDate}
-                           onChange={this.handleChange}
-                           InputProps={{
-                              style: {
-                                  color: "transparent"
-                              }
-                           }}
-                         />
-                       : <TextField
-                           variant="outlined"
-                           margin="normal"
-                           required
-                           fullWidth
-                           id="birthDate"
-                           type="date"
-                           label="Birth Date"
-                           name="birthDate"
-                           value={this.state.birthDate}
-                           onChange={this.handleChange}
-                         />
-                       }
-                       <TextField
-                          variant="outlined"
-                          margin="normal"
-                          required
-                          fullWidth
-                          id="country"
-                          type="text"
-                          label="Country"
-                          name="country"
-                          value={this.state.country}
-                          onChange={this.handleChange}
-                       />
-                       <TextField
-                          variant="outlined"
-                          margin="normal"
-                          required
-                          fullWidth
-                          id="street"
-                          type="text"
-                          label="Street"
-                          name="street"
-                          value={this.state.street}
-                          onChange={this.handleChange}
-                       />
-                       <TextField
-                          variant="outlined"
-                          margin="normal"
-                          required
-                          fullWidth
-                          id="flatNumber"
-                          type="number"
-                          label="Flat Number"
-                          name="flatNumber"
-                          value={this.state.flatNumber}
-                          onChange={this.handleChange}
-                       />
-{/* TODO regex do kodu pocztowego */}
-                       <TextField
-                          variant="outlined"
-                          margin="normal"
-                          required
-                          fullWidth
-                          id="zip"
-                          type="number"
-                          label="ZIP"
-                          name="zip"
-                          value={this.state.zip}
-                          error={this.state.zipError}
-                          onChange={this.handleChange}
-
-                       />
-                       <TextField
-                          variant="outlined"
-                          margin="normal"
-                          required
-                          fullWidth
-                          id="city"
-                          type="text"
-                          label="City"
-                          name="city"
-                          value={this.state.city}
-                          onChange={this.handleChange}
-                       />
-                       {this.state.phoneError?
-                       <TextField
-                          variant="outlined"
-                          margin="normal"
-                          required
-                          fullWidth
-                          id="phone"
-                          type="number"
-                          label="Phone"
-                          name="phone"
-                          value={this.state.phone}
-                          error={this.state.phoneError}
-                          helperText="Phone number must contain 9 digits"
-                          onChange={this.handleChange}
-                       />
-                       :<TextField
-                          variant="outlined"
-                          margin="normal"
-                          required
-                          fullWidth
-                          id="phone"
-                          type="number"
-                          label="Phone"
-                          name="phone"
-                          value={this.state.phone}
-                          error={this.state.phoneError}
-                          onChange={this.handleChange}
-                       />
-                       }
+                       <Grid container justify="center">
+                           <FormControl >
+                               <InputLabel htmlFor="age-native-simple">Account type</InputLabel>
+                               <Select
+                                 native
+                                 value={this.state.accountType}
+                                 onChange={this.handleChange}
+                                 name="accountType"
+                               >
+                                 <option aria-label="None" value="" />
+                                 <option value={"individual"}>osoba fizyczna</option>
+                                 <option value={"individualWithEconomy"}>osoba fizyczna z działalnością gospodarczą</option>
+                                 <option value={"partnership"}>spółka</option>
+                                 <option value={"regular"}>zwykły użytkownik</option>
+                                 <option value={"patron"}>opiekun</option>
+                               </Select>
+                           </FormControl>
+                       </Grid>
+                       <Grid>
+                           <Grid direction="column">
+                               <Grid item>
+                               <TextField
+                                  variant="outlined"
+                                  margin="normal"
+                                  required
+                                  id="firstName"
+                                  type="text"
+                                  label="First Name"
+                                  name="firstName"
+                                  value={this.state.firstName}
+                                  onChange={this.handleChange}
+                               />
+                               </Grid>
+                               <Grid item>
+                               <TextField
+                                  variant="outlined"
+                                  margin="normal"
+                                  required
+                                  id="lastName"
+                                  type="text"
+                                  label="Last Name"
+                                  name="lastName"
+                                  value={this.state.lastName}
+                                  onChange={this.handleChange}
+                               />
+                               </Grid>
+                               <Grid item>
+                               {this.state.birthDate===undefined
+                               ? <TextField
+                                   variant="outlined"
+                                   margin="normal"
+                                   required
+                                   id="birthDate"
+                                   type="date"
+                                   label="Birth Date"
+                                   name="birthDate"
+                                   value={this.state.birthDate}
+                                   onChange={this.handleChange}
+                                   InputProps={{
+                                      style: {
+                                          color: "transparent"
+                                      }
+                                   }}
+                                 />
+                               : <TextField
+                                   variant="outlined"
+                                   margin="normal"
+                                   required
+                                   id="birthDate"
+                                   type="date"
+                                   label="Birth Date"
+                                   name="birthDate"
+                                   value={this.state.birthDate}
+                                   onChange={this.handleChange}
+                                 />
+                               }
+                               </Grid>
+                               <Grid item>
+                               {this.state.phoneError?
+                                  <TextField
+                                     variant="outlined"
+                                     margin="normal"
+                                     required
+                                     id="phone"
+                                     type="number"
+                                     label="Phone"
+                                     name="phone"
+                                     value={this.state.phone}
+                                     error={this.state.phoneError}
+                                     helperText="Phone number must contain 9 digits"
+                                     onChange={this.handleChange}
+                                  />
+                                  :<TextField
+                                     variant="outlined"
+                                     margin="normal"
+                                     required
+                                     id="phone"
+                                     type="number"
+                                     label="Phone"
+                                     name="phone"
+                                     value={this.state.phone}
+                                     error={this.state.phoneError}
+                                     onChange={this.handleChange}
+                                  />
+                                  }
+                                  </Grid>
+                           </Grid>
+                           <Grid direction="column">
+                               <Grid item>
+                                   <TextField
+                                      variant="outlined"
+                                      margin="normal"
+                                      required
+                                      id="country"
+                                      type="text"
+                                      label="Country"
+                                      name="country"
+                                      value={this.state.country}
+                                      onChange={this.handleChange}
+                                   />
+                               </Grid>
+                               <Grid item>
+                                   <TextField
+                                      variant="outlined"
+                                      margin="normal"
+                                      required
+                                      id="street"
+                                      type="text"
+                                      label="Street"
+                                      name="street"
+                                      value={this.state.street}
+                                      onChange={this.handleChange}
+                                   />
+                               </Grid>
+                               <Grid item>
+                                   <TextField
+                                      variant="outlined"
+                                      margin="normal"
+                                      required
+                                      id="flatNumber"
+                                      type="number"
+                                      label="Flat Number"
+                                      name="flatNumber"
+                                      value={this.state.flatNumber}
+                                      onChange={this.handleChange}
+                                   />
+                               </Grid>
+                               <Grid item>
+                                   <TextField
+                                      variant="outlined"
+                                      margin="normal"
+                                      required
+                                      id="zip1"
+                                      type="number"
+                                      label="ZIP"
+                                      name="zip1"
+                                      value={this.state.zip1}
+                                      onChange={this.handleChange}
+                                   />
+                               </Grid>
+                               <Grid item>
+                                   <TextField
+                                     variant="outlined"
+                                     margin="normal"
+                                     required
+                                     id="zip2"
+                                     type="number"
+                                     label="ZIP"
+                                     name="zip2"
+                                     value={this.state.zip2}
+                                     onChange={this.handleChange}
+                                   />
+                               </Grid>
+                               <Grid item>
+                                   <TextField
+                                      variant="outlined"
+                                      margin="normal"
+                                      required
+                                      id="city"
+                                      type="text"
+                                      label="City"
+                                      name="city"
+                                      value={this.state.city}
+                                      onChange={this.handleChange}
+                                   />
+                               </Grid>
+                           </Grid>
+                       </Grid>
                        <TextField
                            variant="outlined"
                            margin="normal"
