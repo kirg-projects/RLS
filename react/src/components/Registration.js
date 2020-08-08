@@ -1,22 +1,47 @@
 import React from 'react'
 import {Typography,TextField, Button,FormControl,FormControlLabel,Grid,Link,Checkbox,NativeSelect,FormHelperText,InputLabel, Select  } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-
 
 class Registration extends React.Component {
     constructor(){
         super(),
         this.state={
             accountType:"",
-            birthDate:null
+            firstName:"",
+            lastName:"",
+            birthDate:undefined,
+            country:"",
+            street:"",
+            flatNumber:undefined,
+            zip:undefined,
+            zipError:false,
+            city:"",
+            phone:undefined,
+            phoneError:false,
+            email:"",
+            reEmail:"",
+            password:"",
+            rePassword:"",
+            companyName:"",
+            nip:undefined,
+            companyNumber:undefined,
+            patronId:"",
         }
         this.handleChange=this.handleChange.bind(this)
     }
+
     handleChange(event){
         const {name, value}=event.target
         this.setState({
             [name]:value
         })
+        {this.state.phone.toString().length<8 || this.state.phone.toString().length>8
+        ? this.setState(
+             {phoneError:true}
+         )
+        : this.setState(
+            {phoneError:false}
+          )
+        }
     }
     render() {
         return (
@@ -50,6 +75,8 @@ class Registration extends React.Component {
                           type="text"
                           label="First Name"
                           name="firstName"
+                          value={this.state.firstName}
+                          onChange={this.handleChange}
                        />
                        <TextField
                           variant="outlined"
@@ -60,8 +87,10 @@ class Registration extends React.Component {
                           type="text"
                           label="Last Name"
                           name="lastName"
+                          value={this.state.lastName}
+                          onChange={this.handleChange}
                        />
-                       {this.state.birthDate===null
+                       {this.state.birthDate===undefined
                        ? <TextField
                            variant="outlined"
                            margin="normal"
@@ -101,6 +130,8 @@ class Registration extends React.Component {
                           type="text"
                           label="Country"
                           name="country"
+                          value={this.state.country}
+                          onChange={this.handleChange}
                        />
                        <TextField
                           variant="outlined"
@@ -111,6 +142,8 @@ class Registration extends React.Component {
                           type="text"
                           label="Street"
                           name="street"
+                          value={this.state.street}
+                          onChange={this.handleChange}
                        />
                        <TextField
                           variant="outlined"
@@ -121,6 +154,8 @@ class Registration extends React.Component {
                           type="number"
                           label="Flat Number"
                           name="flatNumber"
+                          value={this.state.flatNumber}
+                          onChange={this.handleChange}
                        />
 {/* TODO regex do kodu pocztowego */}
                        <TextField
@@ -132,6 +167,10 @@ class Registration extends React.Component {
                           type="number"
                           label="ZIP"
                           name="zip"
+                          value={this.state.zip}
+                          error={this.state.zipError}
+                          onChange={this.handleChange}
+
                        />
                        <TextField
                           variant="outlined"
@@ -142,8 +181,10 @@ class Registration extends React.Component {
                           type="text"
                           label="City"
                           name="city"
+                          value={this.state.city}
+                          onChange={this.handleChange}
                        />
-{/* TODO regex dla numeru telefonicznego */}
+                       {this.state.phoneError?
                        <TextField
                           variant="outlined"
                           margin="normal"
@@ -153,7 +194,25 @@ class Registration extends React.Component {
                           type="number"
                           label="Phone"
                           name="phone"
+                          value={this.state.phone}
+                          error={this.state.phoneError}
+                          helperText="Phone number must contain 9 digits"
+                          onChange={this.handleChange}
                        />
+                       :<TextField
+                          variant="outlined"
+                          margin="normal"
+                          required
+                          fullWidth
+                          id="phone"
+                          type="number"
+                          label="Phone"
+                          name="phone"
+                          value={this.state.phone}
+                          error={this.state.phoneError}
+                          onChange={this.handleChange}
+                       />
+                       }
                        <TextField
                            variant="outlined"
                            margin="normal"
@@ -164,6 +223,8 @@ class Registration extends React.Component {
                            type="email"
                            name="email"
                            autoComplete="email"
+                           value={this.state.email}
+                           onChange={this.handleChange}
                        />
                        <TextField
                           variant="outlined"
@@ -175,6 +236,8 @@ class Registration extends React.Component {
                           type="email"
                           name="reEmail"
                           autoComplete="email"
+                          value={this.state.reEmail}
+                          onChange={this.handleChange}
                       />
                        <TextField
                            variant="outlined"
@@ -185,7 +248,8 @@ class Registration extends React.Component {
                            label="Password"
                            type="password"
                            id="password"
-
+                           value={this.state.password}
+                           onChange={this.handleChange}
                        />
                        <TextField
                           variant="outlined"
@@ -196,7 +260,8 @@ class Registration extends React.Component {
                           label="Repeat password"
                           type="password"
                           id="rePassword"
-
+                          value={this.state.rePassword}
+                          onChange={this.handleChange}
                        />
                        {this.state.accountType==="partnership"||this.state.accountType==="individualWithEconomy"
                        ? <div><TextField
@@ -208,16 +273,20 @@ class Registration extends React.Component {
                             label="Name of company"
                             type="text"
                             id="companyName"
+                            value={this.state.companyName}
+                            onChange={this.handleChange}
                          />
                          <TextField
                             variant="outlined"
                             margin="normal"
                             required
                             fullWidth
-                            name="NIP"
+                            name="nip"
                             label="NIP"
                             type="number"
-                            id="NIP"
+                            id="nip"
+                            value={this.state.nip}
+                            onChange={this.handleChange}
                          />
                          <TextField
                             variant="outlined"
@@ -228,6 +297,8 @@ class Registration extends React.Component {
                             label="Company phone number"
                             type="number"
                             id="companyNumber"
+                            value={this.state.companyNumber}
+                            onChange={this.handleChange}
                          /></div>
                        : null
                        }
@@ -241,6 +312,8 @@ class Registration extends React.Component {
                             label="Patron ID"
                             type="text"
                             id="patronId"
+                            value={this.state.patronId}
+                            onChange={this.handleChange}
                          />
                        : null
                        }
@@ -249,7 +322,6 @@ class Registration extends React.Component {
                            label="Remember me"
                        />
                        <Button
-                           type="submit"
                            fullWidth
                            variant="contained"
                            color="primary"
