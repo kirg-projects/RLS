@@ -1,5 +1,6 @@
 import React from 'react'
 import {Typography,TextField, Button,FormControl,FormControlLabel,Grid,Link,Checkbox,NativeSelect,FormHelperText,InputLabel, Select  } from '@material-ui/core';
+import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 
 class Registration extends React.Component {
     constructor(){
@@ -24,6 +25,7 @@ class Registration extends React.Component {
             companyName:"",
             nip:undefined,
             companyNumber:undefined,
+            companyNumberError:false,
             patronId:"",
         }
         this.handleChange=this.handleChange.bind(this)
@@ -34,7 +36,7 @@ class Registration extends React.Component {
         this.setState({
             [name]:value
         })
-        {this.state.phone.toString().length<8 || this.state.phone.toString().length>8
+        {this.state.phone.toString().length != 9
         ? this.setState(
              {phoneError:true}
          )
@@ -42,6 +44,16 @@ class Registration extends React.Component {
             {phoneError:false}
           )
         }
+        {this.state.companyNumber.toString().length != 9
+        ? this.setState(
+             {companyNumberError:true}
+         )
+        : this.setState(
+            {companyNumberError:false}
+          )
+        }
+console.log(this.state.phone.toString().length +" "+this.state.phone)
+console.log(this.state.companyNumber.toString().length +" "+this.state.companyNumber)
     }
     render() {
         return (
@@ -404,24 +416,47 @@ class Registration extends React.Component {
                                /> : null}
                             </Grid>
                             <Grid item>
-                            {this.state.accountType==="partnership"||this.state.accountType==="individualWithEconomy"
-                             ?  <TextField
-                                  variant="outlined"
-                                  margin="normal"
-                                  required
-                                  name="companyNumber"
-                                  label="Company phone number"
-                                  type="number"
-                                  id="companyNumber"
-                                  value={this.state.companyNumber}
-                                  onChange={this.handleChange}
-                                  InputProps={{
-                                        style: {
-                                            width:"400px"
-                                        }
-                                  }}
-                               /> : null
-                             }
+                            <If condition={(this.state.accountType==="partnership"||this.state.accountType==="individualWithEconomy") && this.state.companyNumberError}>
+                                <Then>
+                                     <TextField
+                                         variant="outlined"
+                                         margin="normal"
+                                         required
+                                         id="companyNumber"
+                                         type="number"
+                                         label="Company Phone Number"
+                                         name="companyNumber"
+                                         value={this.state.companyNumber}
+                                         error={this.state.companyNumberError}
+                                         helperText="Phone number must contain 9 digits"
+                                         onChange={this.handleChange}
+                                         InputProps={{
+                                               style: {
+                                                   width:"400px"
+                                               }
+                                         }}
+                                     />
+                                </Then>
+                                <ElseIf condition={(this.state.accountType==="partnership"||this.state.accountType==="individualWithEconomy") && !this.state.companyNumberError}>
+                                      <TextField
+                                         variant="outlined"
+                                         margin="normal"
+                                         required
+                                         id="companyNumber"
+                                         type="number"
+                                         label="Company Phone Number"
+                                         name="companyNumber"
+                                         value={this.state.companyNumber}
+                                         error={this.state.companyNumberError}
+                                         onChange={this.handleChange}
+                                         InputProps={{
+                                               style: {
+                                                   width:"400px"
+                                               }
+                                         }}
+                                      />
+                                </ElseIf>
+                            </If>
                             </Grid>
                        </Grid>
                        <Grid container direction="column" justify="center" alignItems="center">
