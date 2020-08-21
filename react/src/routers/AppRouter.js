@@ -5,11 +5,12 @@ import TestLogin from '../components/TestLogin'
 import Login from '../components/Login'
 import TestRegistration from '../components/TestRegistration'
 import NotFoundPage from '../components/NotFoundPage'
+import LandingPage from "../components/LandingPage";
 
 const AppRoutes = () => (
     <BrowserRouter>
         <Switch>
-            <Route exact={true} path="/" component={TestDashboard} />
+            <Route exact={true} path="/" component={LandingPage} />
             <Route path="/login" component={Login} />
             <Route path="/testlogin" component={TestLogin} />
             <Route path="/registration" component={TestRegistration} />
