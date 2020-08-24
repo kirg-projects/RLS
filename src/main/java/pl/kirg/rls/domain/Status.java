@@ -1,4 +1,4 @@
-package pl.kirg.rls.entity;
+package pl.kirg.rls.domain;
 
 enum Status
 {

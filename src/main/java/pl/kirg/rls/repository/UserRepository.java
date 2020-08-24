@@ -3,7 +3,7 @@ package pl.kirg.rls.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import pl.kirg.rls.entity.User;
+import pl.kirg.rls.domain.User;
 
 import java.util.Optional;
 
