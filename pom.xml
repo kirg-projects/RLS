@@ -109,8 +109,8 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>6.4.4</version>
                 <configuration>
-                    <url>jdbc:sqlite:./target/sqlite</url>
-                    <user>SA</user>
+                    <url>jdbc:hsqldb:file:./target/hypersql</url>
+                    <user>root</user>
                 </configuration>
             </plugin>
         </plugins>
