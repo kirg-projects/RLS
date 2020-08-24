@@ -1,4 +1,4 @@
-package pl.kirg.rls;
+package pl.kirg.rls.entity;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -15,16 +15,14 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Data
 @Table(name = "users")
-@NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 public class User implements UserDetails
 {
 
@@ -43,12 +41,9 @@ public class User implements UserDetails
     @Column(nullable = false)
     private Boolean enabled;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn
-            (name = "customer_id",
-             unique = true,
-             updatable = false,
-             foreignKey = @ForeignKey(name = "FK_CUSTOMERID")
+    @OneToOne
+            (fetch = FetchType.LAZY,
+             cascade = CascadeType.ALL
             )
     private Customer customer;
 
@@ -94,4 +89,14 @@ public class User implements UserDetails
         return true;
     }
 
+    @Override
+    public String toString()
+    {
+        return "User{" +
+               "username='" + username + '\'' +
+               ", password='" + password + '\'' +
+               ", enabled=" + enabled +
+               ", customer=" + customer.getId() +
+               '}';
+    }
 }

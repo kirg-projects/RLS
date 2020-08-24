@@ -1,4 +1,4 @@
-package pl.kirg.rls;
+package pl.kirg.rls.entity;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -27,7 +27,7 @@ import javax.validation.constraints.Size;
 
 @Data
 @Entity
-@Table(name = "CT_customers",
+@Table(name = "customers",
        uniqueConstraints = @UniqueConstraint
                (
                        name = "UNQ_FIRSTNAME_LASTNAME_PHONENUMBER_EMAIL",
@@ -40,7 +40,7 @@ import javax.validation.constraints.Size;
                                }
                )
 )
-@NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 public class Customer
 {
 
@@ -73,7 +73,7 @@ public class Customer
     @Column(name = "email")
     private String email;
 
-    @OneToOne(targetEntity = User.class)
+    @OneToOne
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL)

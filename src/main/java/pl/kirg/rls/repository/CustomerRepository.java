@@ -3,7 +3,7 @@ package pl.kirg.rls.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import pl.kirg.rls.Customer;
+import pl.kirg.rls.entity.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long>

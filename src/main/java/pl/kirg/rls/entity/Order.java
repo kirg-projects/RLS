@@ -1,4 +1,4 @@
-package pl.kirg.rls;
+package pl.kirg.rls.entity;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -9,18 +9,17 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Data
 @Entity(name = "CT_orders")
-@NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 public class Order
 {
 
@@ -31,17 +30,16 @@ public class Order
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer customer;
 
+    @Enumerated(EnumType.STRING)
+    private Status orderStatus;
+
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable
-            (
-                    name = "CT_ORDERS_PRODUCTS",
-                    inverseJoinColumns = @JoinColumn(name = "productID"),
-                    joinColumns = {@JoinColumn(name = "orderID")},
-                    foreignKey = @ForeignKey(name = "FK_CUSTOMER_ID")
-            )
     private List<Product> product;
 
-    @Column(name = "total", nullable = false, precision = 2)
+    @Column(name = "message", nullable = true)
+    private String customerMessage;
+
+    @Column(name = "total", nullable = false, precision = 6, scale = 2)
     private BigDecimal grandTotal;
 
 }

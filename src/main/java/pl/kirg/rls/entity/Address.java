@@ -1,4 +1,4 @@
-package pl.kirg.rls;
+package pl.kirg.rls.entity;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Data
 @Table(name = "CT_addresses")
-@NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 public class Address
 {
 
