@@ -27,19 +27,19 @@ public class Order
     @GeneratedValue
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Customer customer;
-
     @Enumerated(EnumType.STRING)
     private Status orderStatus;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Product> product;
 
     @Column(name = "message", nullable = true)
     private String customerMessage;
 
     @Column(name = "total", nullable = false, precision = 6, scale = 2)
     private BigDecimal grandTotal;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Customer customer;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Product> product;
 
 }
