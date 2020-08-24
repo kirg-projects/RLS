@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import org.springframework.format.annotation.NumberFormat;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,11 +37,13 @@ public class Address
 
     @NotNull
     @Size(min = 1, max = 20)
+    @Column(name = "street_number")
     private String streetNumber;
 
     @NotNull
     @NumberFormat
     @Size(min = 4, max = 10)
+    @Column(name = "post_code")
     private String postCode;
 
     @Size(min = 2, max = 40)

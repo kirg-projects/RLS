@@ -26,23 +26,23 @@ public class Product
     @Column(length = 150, nullable = false)
     private String name;
 
-    @Column(length = 50, nullable = true)
+    @Column(name = "short_desc", length = 50, nullable = true)
     private String shortDescription;
 
-    @Column(nullable = false)
+    @Column(name = "full_desc", nullable = false)
     private String fullDescription;
 
     @Column(precision = 6, scale = 2, nullable = false)
     private BigDecimal qty;
 
-    @Column(nullable = false)
+    @Column(name = "availability_h", nullable = false)
     private Integer availabilityInHours;
 
     @NumberFormat
     @Column(precision = 6, scale = 2, nullable = false)
     private BigDecimal price;
 
-    @Column(name = "discountPc", nullable = true)
+    @Column(name = "discount_Pc", nullable = true)
     private Integer discountPercent;
 
 }

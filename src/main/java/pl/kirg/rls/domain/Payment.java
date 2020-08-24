@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,6 +22,7 @@ public class Payment
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private Status paymentStatus;
 
 }

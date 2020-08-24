@@ -28,6 +28,7 @@ public class Order
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "order_status")
     private Status orderStatus;
 
     @Column(name = "message", nullable = true)
