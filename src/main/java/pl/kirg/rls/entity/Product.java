@@ -1,4 +1,4 @@
-package pl.kirg.rls;
+package pl.kirg.rls.entity;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -15,7 +15,7 @@ import javax.persistence.Id;
 
 @Data
 @Entity(name = "products")
-@NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
 public class Product
 {
 
@@ -32,17 +32,17 @@ public class Product
     @Column(nullable = false)
     private String fullDescription;
 
-    @Column(precision = 0, nullable = false)
+    @Column(precision = 6, scale = 2, nullable = false)
     private BigDecimal qty;
 
     @Column(nullable = false)
-    private Integer availability;
+    private Integer availabilityInHours;
 
     @NumberFormat
-    @Column(precision = 2, nullable = false)
+    @Column(precision = 6, scale = 2, nullable = false)
     private BigDecimal price;
 
-    @Column(name = "discount_PC", nullable = true)
+    @Column(name = "discountPc", nullable = true)
     private Integer discountPercent;
 
 }
