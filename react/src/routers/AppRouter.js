@@ -5,10 +5,7 @@ import TestLogin from '../components/TestLogin'
 import TestRegistration from '../components/TestRegistration'
 import NotFoundPage from '../components/NotFoundPage'
 
-/*
-    Rozszerznie o kolejne podstorny wymaga dodania kolejnego <Route />
-    oraz określenie atrybutu path
-*/
+
 const AppRoutes = () => (
     <BrowserRouter>
         <Switch>

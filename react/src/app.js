@@ -10,7 +10,7 @@ store.subscribe(() => {
     console.log(store.getState())
 })
 
-// Application root
+
 const app = (
     <Provider store={store}>
         <AppRoutes />
