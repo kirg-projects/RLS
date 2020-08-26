@@ -32,8 +32,8 @@ public class Product
     @Column(name = "full_desc", nullable = false)
     private String fullDescription;
 
-    @Column(precision = 6, scale = 2, nullable = false)
-    private BigDecimal qty;
+    @Column(nullable = false)
+    private Integer qty;
 
     @Column(name = "availability_h", nullable = false)
     private Integer availabilityInHours;
