@@ -1,4 +1,4 @@
-********************\*\*\********************* START **********************\***********************
+******************************************* START *********************************************
 
 Zaraz po ściągnięciu z repo musimy wpisać komende :
 
@@ -44,3 +44,72 @@ app.js -> to jest nasz główny root reacta póki co jest tam testowy jsx który
 package.json -> znajdują sie tutaj wszytskie package których uzywamy w naszym projekcie w moemenceie gdy zainstalujecie jakiś moduł npm to tam trafia inormacja o nim i jego wersji
 
 .babelrc, packaga-lock.json, webpack.config.js, yarn.lock - pliki konfiguracyjne
+
+
+
+******************************************* REDUX  *********************************************
+
+/*
+    Mapowanie userActions na propsy componenta, pozwala na zapisanie do store okeślanych parametrów, za
+    pomocą prostej funkcji setUserCrudentials buttona, w celu wizualizacji rezultatu należy za pomocą Linka
+    przenieść sie do Dashbordu. Użycie Linka jest WYMAGANE, w innym przypadku nastąpi odświerzenie strony
+    a dane ze store zostaną 'wyczyszczone'
+*/
+    const mapDispatchToProps = (dispatch) => {
+        return {
+            setUserCrudentials: (id, name, surname, email) => {
+                dispatch({
+                    type: "LOGIN_SUCCESS",
+                    payload: {
+                        id,
+                        name,
+                        surname,
+                        email,
+                    }
+                })
+            }
+        }
+    }
+Fragment kodu z TestLogin.js
+
+
+/*
+    Mapowanie stanów store na propsy componentu, w prosty sposób uzyskujemy dostep,
+    do wczesniej zapisanych daych, znajdują się one w props.userCrudentials
+*/
+
+    const mapPropsToState = (state) => {
+        return {
+            userCrudentials: state
+        }
+    }
+
+Fragment kodu z TestDashboard.js
+
+/* Początkowy stan naszego reducera, zanim nastąpi pierwszy dispatch user state wynosi undefined,
+przechowujemy dane które prawdopodobnie bedziemy musieli użyć w naszej aplikacji,
+unika sie przechowywanie haseł czy innych newralgicznych danych po stronie klienta
+
+Istnieje możliwość tworznia wielu reducerów a następnie łączneie je w jednym 'store', dlatego zamiast
+rozbudowywać userReduer, należy tworzyć kolejne np. filltersReducers czy productReducer
+*/
+
+const initialUserState = {
+    id: undefined,
+    name: undefined,
+    surname: undefined,
+    email: undefined,
+}
+
+/*
+    Istotą reduxa jest nie modyfikowanie poprzedniego stanu natomiast tworzenie tworzenie jego kopii,
+    oraz praca na niej co zapewnia Object.assign(), LOGIN_SUCCESS ustawia podstawowe informacje
+    natomiast LOGOUT ustawie na na undefined
+*/
+
+         Object.assign({}, state, {
+                id: action.payload.id,
+                name: action.payload.name,
+                surname: action.payload.surname,
+                email: action.payload.email,
+            })

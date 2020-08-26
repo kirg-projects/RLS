@@ -5,6 +5,7 @@ import TestLogin from '../components/TestLogin'
 import TestRegistration from '../components/TestRegistration'
 import NotFoundPage from '../components/NotFoundPage'
 
+
 const AppRoutes = () => (
     <BrowserRouter>
         <Switch>
