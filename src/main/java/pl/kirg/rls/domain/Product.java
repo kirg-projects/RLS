@@ -4,13 +4,17 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Data
@@ -20,7 +24,7 @@ public class Product
 {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 150, nullable = false)
@@ -44,5 +48,10 @@ public class Product
 
     @Column(name = "discount_Pc", nullable = true)
     private Integer discountPercent;
+
+    @DateTimeFormat
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private final Timestamp timestamp;
 
 }
