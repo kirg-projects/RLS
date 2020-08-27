@@ -6,7 +6,7 @@ class Registration extends React.Component {
     constructor() {
         super(),
             this.state = {
-                accountType: "",
+                accountType: "newUser",
                 login: "",
                 firstName: "",
                 lastName: "",
@@ -27,16 +27,15 @@ class Registration extends React.Component {
                 companyNumber: undefined,
                 companyNumberError: false,
                 patronId: "",
+                remember: false,
             }
         this.handleChange = this.handleChange.bind(this)
-
     }
 
     handleChange(event) {
-        const { name, value } = event.target
-        this.setState({
-            [name]: value
-        })
+        const { name, value, checked } = event.target
+        name==="remember"? this.setState({[name]: checked}) : this.setState({[name]: value})
+        
     }
 
     submitForm = (event) => {
@@ -68,7 +67,7 @@ class Registration extends React.Component {
             <div >
                 <Grid container justify="center" >
                     <Grid item xs={12}>
-                        <Typography component="h1" variant="h5" color="primary" align="center">
+                        <Typography component="h1" variant="h5" color="primary" align="center" style={{paddingBottom:"45px"}}>
                             Sign up
                         </Typography>
                     </Grid>
@@ -95,12 +94,14 @@ class Registration extends React.Component {
                                     onChange={this.handleChange}
                                      InputProps={{
                                          style:{
-                                             marginTop:"22%"
+                                             marginTop:"22%",
+                                             marginLeft:"5%"
                                          }
                                      }}
                                      InputLabelProps={{
                                         style:{
-                                            marginTop:"13%"
+                                            marginTop:"13%",
+                                            marginLeft:"5%"
                                         }
                                      }}
                                 />
@@ -187,6 +188,16 @@ class Registration extends React.Component {
                                         name="country"
                                         value={this.state.country}
                                         onChange={this.handleChange}
+                                        InputProps={{
+                                            style:{
+                                                marginLeft:"6%"
+                                            }
+                                        }}
+                                        InputLabelProps={{
+                                            style:{
+                                                marginLeft:"6%"
+                                            }
+                                        }}
                                     />
                                 </Grid>
                                 <Grid item >
@@ -198,6 +209,16 @@ class Registration extends React.Component {
                                         name="street"
                                         value={this.state.street}
                                         onChange={this.handleChange}
+                                        InputProps={{
+                                            style:{
+                                                marginLeft:"6%"
+                                            }
+                                        }}
+                                        InputLabelProps={{
+                                            style:{
+                                                marginLeft:"6%"
+                                            }
+                                        }}
                                     />
                                 </Grid>
                                 <Grid item >
@@ -209,6 +230,16 @@ class Registration extends React.Component {
                                         name="flatNumber"
                                         value={this.state.flatNumber}
                                         onChange={this.handleChange}
+                                        InputProps={{
+                                            style:{
+                                                marginLeft:"6%"
+                                            }
+                                        }}
+                                        InputLabelProps={{
+                                            style:{
+                                                marginLeft:"6%"
+                                            }
+                                        }}
                                     />
                                 </Grid>
                                 <Grid container item justify="center" >
@@ -375,12 +406,13 @@ class Registration extends React.Component {
                         <Grid container direction="row" justify="center" alignItems="center">
                             <Grid item>
                                 <FormControlLabel
-                                    control={<Checkbox value="remember" color="primary" />}
-                                    label="Remember me"
+                                    control={<Checkbox name="remember " value={this.state.remember} onChange={this.handleChange} color="primary" />}
+                                    label={<span  style={{ color: "#3f51b5" , fontSize:"14px"  }}>Remember me</span>}
+
                                 />
                             </Grid>
                             <Grid item>
-                                <Link href="#" >
+                                <Link href="#" style={{  fontSize:"12px"  }}>
                                     I already have an account. Sign in.
                                 </Link>
                             </Grid>
