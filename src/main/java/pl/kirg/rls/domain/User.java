@@ -4,10 +4,13 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
 
@@ -40,6 +43,11 @@ public class User implements UserDetails
 
     @Column(nullable = false)
     private Boolean enabled;
+
+    @CreationTimestamp
+    @DateTimeFormat
+    @Column(nullable = false, updatable = false)
+    private final Timestamp timestamp;
 
     @OneToOne
             (fetch = FetchType.LAZY,
