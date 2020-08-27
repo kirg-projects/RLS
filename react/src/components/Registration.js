@@ -1,6 +1,30 @@
 import React from 'react'
-import { Typography, TextField, Button, FormControl, FormControlLabel, Grid, Link, Checkbox, FormLabel,RadioGroup,Radio, FormHelperText,InputLabel, Select } from '@material-ui/core';
-import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
+import {  Grid } from '@material-ui/core';
+
+import SignUpTitle from './registration/SignUpTitle'
+import RadioButtons from './registration/RadioButtons'
+import LoginTextField from './registration/LoginTextField'
+import FNameTextField from './registration/FNameTextField'
+import LNameTextField from './registration/LNameTextField'
+import BirthTextField from './registration/BirthTextField'
+import PhoneTextField from './registration/PhoneTextField'
+import CountryTextField from './registration/CountryTextField'
+import StreetTextField from './registration/StreetTextField'
+import FlatTextField from './registration/FlatTextField'
+import ZIPTextField from './registration/ZIPTextField'
+import CityTextField from './registration/CityTextField'
+import EmailTextField from './registration/EmailTextField'
+import ReEmailTextField from './registration/ReEmailTextField'
+import PasswordTextField from './registration/PasswordTextField'
+import RePasswordTextField from './registration/RePasswordTextField'
+import CompanyTextField from './registration/CompanyTextField'
+import NIPTextField from './registration/NIPTextField'
+import CPhoneTextField from './registration/CPhoneTextField'
+import PatronTextField from './registration/PatronTextField'
+import RememberCheckbox from './registration/RememberCheckbox'
+import SignInLink from './registration/SignInLink'
+import SubmitButton from './registration/SubmitButton'
+
 
 class Registration extends React.Component {
     constructor() {
@@ -35,7 +59,6 @@ class Registration extends React.Component {
     handleChange(event) {
         const { name, value, checked } = event.target
         name==="remember"? this.setState({[name]: checked}) : this.setState({[name]: value})
-        
     }
 
     submitForm = (event) => {
@@ -67,219 +90,82 @@ class Registration extends React.Component {
             <div >
                 <Grid container justify="center" >
                     <Grid item xs={12}>
-                        <Typography component="h1" variant="h5" color="primary" align="center" style={{paddingBottom:"45px"}}>
-                            Sign up
-                        </Typography>
+                        <SignUpTitle/>
                     </Grid>
                     <form noValidate onSubmit={this.submitForm}>
                         <Grid container justify="center" spacing={10}>
                             <Grid item>
-                                <FormControl component="fieldset">
-                                  <FormLabel component="legend">Account Type</FormLabel>
-                                  <RadioGroup  name="accountType" value={this.state.accountType} onChange={this.handleChange}>
-                                    <FormControlLabel value="newUser" control={<Radio color="primary"/>} label="New user" labelPlacement="start"/>
-                                    <FormControlLabel value="company" control={<Radio color="primary"/>} label="Company" labelPlacement="start"/>
-                                    <FormControlLabel value="patron" control={<Radio color="primary"/>} label="Patron" labelPlacement="start"/>
-                                  </RadioGroup>
-                                </FormControl>
+                                <RadioButtons
+                                    value={this.state.accountType}
+                                    onChange={this.handleChange}
+                                />
                             </Grid>
                             <Grid item >
-                                <TextField
-                                    margin="normal"
-                                    id="login"
-                                    type="text"
-                                    label="Login"
-                                    name="login"
+                                <LoginTextField
                                     value={this.state.login}
                                     onChange={this.handleChange}
-                                     InputProps={{
-                                         style:{
-                                             marginTop:"22%",
-                                             marginLeft:"5%"
-                                         }
-                                     }}
-                                     InputLabelProps={{
-                                        style:{
-                                            marginTop:"13%",
-                                            marginLeft:"5%"
-                                        }
-                                     }}
                                 />
                             </Grid>
                         </Grid>
                         <Grid container>
                             <Grid container item direction="column" justify="center"  alignItems="center" xs={6}>
                                 <Grid item >
-                                    <TextField
-                                        margin="normal"
-                                        id="firstName"
-                                        type="text"
-                                        label="First Name"
-                                        name="firstName"
+                                    <FNameTextField
                                         value={this.state.firstName}
                                         onChange={this.handleChange}
-
                                     />
                                 </Grid>
                                 <Grid item >
-                                    <TextField
-                                        margin="normal"
-                                        id="lastName"
-                                        type="text"
-                                        label="Last Name"
-                                        name="lastName"
+                                    <LNameTextField
                                         value={this.state.lastName}
                                         onChange={this.handleChange}
-
                                     />
                                 </Grid>
                                 <Grid item >
-                                    <TextField
-                                       id="birthDay"
-                                       fullWidth
-                                       label="Birth Date"
-                                       type="date"
-                                       name="birthDate"
-                                       value={this.state.birthDate}
-                                       onChange={this.handleChange}
-                                       InputLabelProps={{
-                                         shrink: true,
-                                       }}
-                                       InputProps={{
-                                         style:{
-                                            width:"200px"
-                                         }
-                                       }}
-                                     />
+                                    <BirthTextField
+                                        value={this.state.birthDate}
+                                        onChange={this.handleChange}
+                                    />
                                 </Grid>
                                 <Grid item >
-                                    {this.state.phoneError ?
-                                        <TextField
-                                            margin="normal"
-                                            id="phone"
-                                            type="number"
-                                            label="Phone"
-                                            name="phone"
-                                            value={this.state.phone}
-                                            error={this.state.phoneError}
-                                            helperText="Phone number must contain 9 digits"
-                                            onChange={this.handleChange}
-                                        />
-                                        : <TextField
-                                            margin="normal"
-                                            id="phone"
-                                            type="number"
-                                            label="Phone"
-                                            name="phone"
-                                            value={this.state.phone}
-                                            error={this.state.phoneError}
-                                            onChange={this.handleChange}
-                                        />
-                                    }
+                                    <PhoneTextField
+                                        phoneError={this.state.phoneError}
+                                        value={this.state.phone}
+                                        error={this.state.phoneError}
+                                        onChange={this.handleChange}
+                                    />
                                 </Grid>
                             </Grid>
                             <Grid container item direction="column" justify="center"  alignItems="center" xs={6}>
                                 <Grid item >
-                                    <TextField
-                                        margin="normal"
-                                        id="country"
-                                        type="text"
-                                        label="Country"
-                                        name="country"
+                                    <CountryTextField
                                         value={this.state.country}
                                         onChange={this.handleChange}
-                                        InputProps={{
-                                            style:{
-                                                marginLeft:"6%"
-                                            }
-                                        }}
-                                        InputLabelProps={{
-                                            style:{
-                                                marginLeft:"6%"
-                                            }
-                                        }}
                                     />
                                 </Grid>
                                 <Grid item >
-                                    <TextField
-                                        margin="normal"
-                                        id="street"
-                                        type="text"
-                                        label="Street"
-                                        name="street"
+                                    <StreetTextField
                                         value={this.state.street}
                                         onChange={this.handleChange}
-                                        InputProps={{
-                                            style:{
-                                                marginLeft:"6%"
-                                            }
-                                        }}
-                                        InputLabelProps={{
-                                            style:{
-                                                marginLeft:"6%"
-                                            }
-                                        }}
                                     />
                                 </Grid>
                                 <Grid item >
-                                    <TextField
-                                        margin="none"
-                                        id="flatNumber"
-                                        type="number"
-                                        label="Flat Number"
-                                        name="flatNumber"
+                                    <FlatTextField
                                         value={this.state.flatNumber}
                                         onChange={this.handleChange}
-                                        InputProps={{
-                                            style:{
-                                                marginLeft:"6%"
-                                            }
-                                        }}
-                                        InputLabelProps={{
-                                            style:{
-                                                marginLeft:"6%"
-                                            }
-                                        }}
                                     />
                                 </Grid>
                                 <Grid container item justify="center" >
                                     <Grid item xs={6}>
-                                        <TextField
-                                            margin="normal"
-                                            id="zip"
-                                            type="number"
-                                            label="ZIP Code"
-                                            name="zip"
+                                        <ZIPTextField
                                             value={this.state.zip}
                                             onChange={this.handleChange}
-                                            InputProps={{
-                                                style:{
-                                                    width:"75px",
-                                                    marginLeft:"15%",
-                                                }
-                                            }}
-                                            InputLabelProps={{
-                                               style:{
-                                                  marginLeft:"15%",
-                                                  fontSize:"14px"
-                                               }
-                                            }}
                                         />
                                     </Grid>
                                     <Grid item xs={6}>
-                                        <TextField
-                                            margin="normal"
-                                            id="city"
-                                            type="text"
-                                            label="City"
-                                            name="city"
+                                        <CityTextField
                                             value={this.state.city}
                                             onChange={this.handleChange}
-                                            InputProps={{
-                                                style:{
-                                                    width:"95px"
-                                                }
-                                            }}
                                         />
                                     </Grid>
                                 </Grid>
@@ -287,140 +173,77 @@ class Registration extends React.Component {
                         </Grid>
                         <Grid container direction="column" justify="center" alignItems="center">
                             <Grid item xs={12}>
-                                <TextField
-                                    margin="normal"
-                                    fullWidth
-                                    id="email"
-                                    label="Email Address"
-                                    type="email"
-                                    name="email"
-                                    autoComplete="email"
+                                <EmailTextField
                                     value={this.state.email}
                                     onChange={this.handleChange}
                                 />
                             </Grid>
                             <Grid item>
-                                <TextField
-                                    margin="normal"
-                                    id="reEmail"
-                                    label="Repeat Email Address"
-                                    type="email"
-                                    name="reEmail"
-                                    autoComplete={this.state.email}
+                                <ReEmailTextField
                                     value={this.state.reEmail}
                                     onChange={this.handleChange}
                                 />
                             </Grid>
                             <Grid item>
-                                <TextField
-                                    margin="normal"
-                                    name="password"
-                                    label="Password"
-                                    type="password"
-                                    id="password"
+                                <PasswordTextField
                                     value={this.state.password}
                                     onChange={this.handleChange}
                                 />
                             </Grid>
                             <Grid item>
-                                <TextField
-                                    margin="normal"
-                                    name="rePassword"
-                                    label="Repeat Password"
-                                    type="password"
-                                    id="rePassword"
+                                <RePasswordTextField
                                     value={this.state.rePassword}
                                     onChange={this.handleChange}
                                 />
+
                             </Grid>
                         </Grid>
                         <Grid container direction="column" justify="center" alignItems="center">
                             <Grid item>
-                                {this.state.accountType === "company"
-                                    ? <TextField
-                                        margin="normal"
-                                        name="companyName"
-                                        label="Name of company"
-                                        type="text"
-                                        id="companyName"
-                                        value={this.state.companyName}
-                                        onChange={this.handleChange}
-                                    /> : null}
-                            </Grid>
-                            <Grid item>
-                                {this.state.accountType === "company"
-                                    ? <TextField
-                                        margin="normal"
-                                        name="nip"
-                                        label="NIP"
-                                        type="number"
-                                        id="nip"
-                                        value={this.state.nip}
-                                        onChange={this.handleChange}
-                                    /> : null}
-                            </Grid>
-                            <Grid item>
-                                <If condition={this.state.accountType === "company"  && this.state.companyNumberError}>
-                                    <Then>
-                                        <TextField
-                                            margin="normal"
-                                            id="companyNumber"
-                                            type="number"
-                                            label="Company Phone Number"
-                                            name="companyNumber"
-                                            value={this.state.companyNumber}
-                                            error={this.state.companyNumberError}
-                                            helperText="Phone number must contain 9 digits"
-                                            onChange={this.handleChange}
-                                        />
-                                    </Then>
-                                    <ElseIf condition={this.state.accountType === "company"&& !this.state.companyNumberError}>
-                                        <TextField
-                                            margin="normal"
-                                            id="companyNumber"
-                                            type="number"
-                                            label="Company Phone Number"
-                                            name="companyNumber"
-                                            value={this.state.companyNumber}
-                                            error={this.state.companyNumberError}
-                                            onChange={this.handleChange}
-                                        />
-                                    </ElseIf>
-                                </If>
-                            </Grid>
-                        </Grid>
-                        <Grid container direction="column" justify="center" alignItems="center">
-                            {this.state.accountType === "patron"
-                                ? <TextField
-                                    margin="normal"
-                                    name="patronId"
-                                    label="Patron ID"
-                                    type="text"
-                                    id="patronId"
-                                    value={this.state.patronId}
+                                <CompanyTextField
+                                    accountType={this.state.accountType}
+                                    value={this.state.companyName}
                                     onChange={this.handleChange}
                                 />
-                                : null
-                            }
+                            </Grid>
+                            <Grid item>
+                                <NIPTextField
+                                    accountType={this.state.accountType}
+                                    value={this.state.nip}
+                                    onChange={this.handleChange}
+                                />
+                            </Grid>
+                            <Grid item>
+                                <CPhoneTextField
+                                    accountType={this.state.accountType}
+                                    value={this.state.companyNumber}
+                                    onChange={this.handleChange}
+                                    companyNumberError={this.state.companyNumberError}
+                                />
+                            </Grid>
+                        </Grid>
+                        <Grid container direction="column" justify="center" alignItems="center">
+                            <PatronTextField
+                                accountType={this.state.accountType}
+                                value={this.state.patronId}
+                                onChange={this.handleChange}
+                            />
                         </Grid>
                         <Grid container direction="row" justify="center" alignItems="center">
                             <Grid item>
-                                <FormControlLabel
-                                    control={<Checkbox name="remember " value={this.state.remember} onChange={this.handleChange} color="primary" />}
-                                    label={<span  style={{ color: "#3f51b5" , fontSize:"14px"  }}>Remember me</span>}
-
+                                <RememberCheckbox
+                                    value={this.state.patronId}
+                                    onChange={this.handleChange}
                                 />
                             </Grid>
                             <Grid item>
-                                <Link href="#" style={{  fontSize:"12px"  }}>
-                                    I already have an account. Sign in.
-                                </Link>
+                                <SignInLink />
                             </Grid>
                         </Grid>
                         <Grid container direction="column" justify="center" alignItems="center">
-                            <Button variant="contained" color="primary" onClick={this.submitForm}>
-                                Sign up
-                            </Button>
+                            <SubmitButton
+                                onClick={this.submitForm}
+                            />
                         </Grid>
                     </form>
                 </Grid>
