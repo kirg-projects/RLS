@@ -1,6 +1,6 @@
 package pl.kirg.rls.domain;
 
-enum Status
+public enum Status
 {
     NEW, PAYMENT_RECEIVED, PAYMENT_FAILED, PAYMENT_REFUNDED,
     IN_PROGRESS, COMPLETED, CLOSED, CANCELLED
