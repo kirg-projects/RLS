@@ -17,6 +17,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -73,13 +75,24 @@ public class Customer
     @Column(name = "email")
     private String email;
 
-    @OneToOne
+    @OneToOne(mappedBy = "customer")
+    @JoinColumn
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable
+            (name = "customers_ct_orders",
+             joinColumns = @JoinColumn(name = "customer_id"),
+             inverseJoinColumns = @JoinColumn
+            )
     private List<Order> order;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable
+            (name = "customers_ct_addressess",
+             joinColumns = @JoinColumn(name = "customer_id"),
+             inverseJoinColumns = @JoinColumn
+            )
     private List<Address> address;
 
 }
