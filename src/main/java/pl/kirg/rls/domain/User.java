@@ -102,9 +102,10 @@ public class User implements UserDetails
     {
         return "User{" +
                "username='" + username + '\'' +
-               ", password='" + password + '\'' +
                ", enabled=" + enabled +
-               ", customer=" + customer.getId() +
+               ", timestamp=" + timestamp +
+               ", customer_ID=" + customer.getId() +
                '}';
     }
+
 }
