@@ -95,4 +95,18 @@ public class Customer
             )
     private List<Address> address;
 
+    @Override
+    public String toString()
+    {
+        return "Customer{" +
+               "id=" + id +
+               ", firstName='" + firstName + '\'' +
+               ", lastName='" + lastName + '\'' +
+               ", birthDate=" + birthDate +
+               ", phoneNumber='" + phoneNumber + '\'' +
+               ", email='" + email + '\'' +
+               ", orders=" + order.size() +
+               ", addresses=" + address.size() +
+               '}';
+    }
 }
