@@ -34,13 +34,13 @@ class Registration extends React.Component {
                 login: "",
                 firstName: "",
                 lastName: "",
-                birthDate: undefined,
+                birthDate: "",
                 country: "",
                 street: "",
-                flatNumber: undefined,
-                zip: undefined,
+                flatNumber: "",
+                zip: "",
                 city: "",
-                phone: undefined,
+                phone: "",
                 phoneError: false,
                 email: "",
                 reEmail: "",
@@ -48,7 +48,7 @@ class Registration extends React.Component {
                 rePassword: "",
                 companyName: "",
                 nip: undefined,
-                companyNumber: undefined,
+                companyNumber: "",
                 companyNumberError: false,
                 patronId: "",
                 remember: false,
@@ -64,24 +64,7 @@ class Registration extends React.Component {
     submitForm = (event) => {
         event.preventDefault();
 
-        this.state.phone.toString().length != 9
-            ? this.setState(
-                { phoneError: true }
-            )
-            : this.setState(
-                { phoneError: false }
-            )
-
-        this.state.companyNumber.toString().length != 9
-            ? this.setState(
-                { companyNumberError: true }
-            )
-            : this.setState(
-                { companyNumberError: false }
-            )
-
-        if (!this.state.phoneError && !this.state.companyNumberError)
-            console.log('Submited!!')
+        
 
     }
 
