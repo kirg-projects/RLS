@@ -21,6 +21,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -30,23 +31,24 @@ public class User implements UserDetails
 {
 
     @Id
+    @NotNull
     @Column
             (length = 50,
-             nullable = false,
              unique = true,
              updatable = false
             )
     private String username;
 
-    @Column(nullable = false)
+    @NotNull
+    @Column()
     private String password;
 
-    @Column(nullable = false)
+    @NotNull
     private Boolean enabled;
 
     @CreationTimestamp
     @DateTimeFormat
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     private final Timestamp timestamp;
 
     @OneToOne

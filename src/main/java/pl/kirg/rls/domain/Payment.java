@@ -16,6 +16,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity(name = "payments")
@@ -27,16 +28,18 @@ public class Payment
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private Status paymentStatus;
 
-    @Column(name = "response", nullable = false)
+    @NotNull
+    @Column(name = "response")
     private String responseFromProvider;
 
     @CreationTimestamp
     @DateTimeFormat
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     private final Timestamp timestamp;
 
 }

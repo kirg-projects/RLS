@@ -16,6 +16,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity(name = "products")
@@ -27,23 +28,28 @@ public class Product
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 150, nullable = false)
+    @NotNull
+    @Column(length = 150)
     private String name;
 
     @Column(name = "short_desc", length = 50, nullable = true)
     private String shortDescription;
 
-    @Column(name = "full_desc", nullable = false)
+    @NotNull
+    @Column(name = "full_desc")
     private String fullDescription;
 
-    @Column(nullable = false)
+    @NotNull
+    @Column()
     private Integer qty;
 
-    @Column(name = "availability_h", nullable = false)
+    @NotNull
+    @Column(name = "availability_h")
     private Integer availabilityInHours;
 
+    @NotNull
     @NumberFormat
-    @Column(precision = 6, scale = 2, nullable = false)
+    @Column(precision = 6, scale = 2)
     private BigDecimal price;
 
     @Column(name = "discount_Pc", nullable = true)
@@ -51,7 +57,7 @@ public class Product
 
     @DateTimeFormat
     @CreationTimestamp
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     private final Timestamp timestamp;
 
 }

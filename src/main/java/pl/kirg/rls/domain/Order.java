@@ -21,6 +21,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity(name = "CT_orders")
@@ -39,7 +40,8 @@ public class Order
     @Column(name = "message", nullable = true)
     private String customerMessage;
 
-    @Column(name = "total", nullable = false, precision = 6, scale = 2)
+    @NotNull
+    @Column(name = "total", precision = 6, scale = 2)
     private BigDecimal grandTotal;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -62,4 +64,14 @@ public class Order
     @JoinColumn(name = "payment_id", updatable = false)
     private Payment payment;
 
+    @Override
+    public String toString()
+    {
+        return "Order{" +
+               "id=" + id +
+               ", orderStatus=" + orderStatus +
+               ", customerMessage='" + customerMessage + '\'' +
+               ", grandTotal=" + grandTotal.toPlainString() +
+               '}';
+    }
 }
