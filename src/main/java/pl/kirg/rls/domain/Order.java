@@ -4,7 +4,11 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -44,9 +48,17 @@ public class Order
     @Column(name = "total", precision = 6, scale = 2)
     private BigDecimal grandTotal;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @DateTimeFormat
+    @CreationTimestamp
+    private final Timestamp created;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "customer_id")
     private Customer customer;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ship_addrss")
+    private Address address;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable
@@ -71,7 +83,10 @@ public class Order
                "id=" + id +
                ", orderStatus=" + orderStatus +
                ", customerMessage='" + customerMessage + '\'' +
-               ", grandTotal=" + grandTotal.toPlainString() +
+               ", grandTotal=" + grandTotal +
+               ", created=" + created +
+               ", customer=" + customer +
+               ", payment=" + payment +
                '}';
     }
 }
