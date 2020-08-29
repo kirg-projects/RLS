@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.sql.Timestamp;
@@ -18,6 +17,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -31,6 +32,9 @@ public class User implements UserDetails
 {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @NotNull
     @Column
             (length = 50,
@@ -40,7 +44,6 @@ public class User implements UserDetails
     private String username;
 
     @NotNull
-    @Column()
     private String password;
 
     @NotNull
@@ -48,19 +51,23 @@ public class User implements UserDetails
 
     @CreationTimestamp
     @DateTimeFormat
-    @Column(updatable = false)
+    @Column(name = "registration", updatable = false)
     private final Timestamp timestamp;
 
     @OneToOne
-            (fetch = FetchType.LAZY,
-             cascade = CascadeType.ALL
+            (fetch = FetchType.EAGER,
+             cascade = CascadeType.ALL,
+             optional = false
             )
+    private Authority authority;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Customer customer;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities()
     {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        return List.of(authority);
     }
 
     @Override
@@ -105,9 +112,9 @@ public class User implements UserDetails
         return "User{" +
                "username='" + username + '\'' +
                ", enabled=" + enabled +
-               ", timestamp=" + timestamp +
-               ", customer_ID=" + customer.getId() +
+               ", registration=" + timestamp +
+               ", authority=" + authority.getAuthority() +
                '}';
     }
-
 }
+
