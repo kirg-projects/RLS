@@ -42,4 +42,14 @@ public class Payment
     @Column(updatable = false)
     private final Timestamp timestamp;
 
+    @Override
+    public String toString()
+    {
+        return "Payment{" +
+               "id=" + id +
+               ", paymentStatus=" + paymentStatus +
+               ", responseFromProvider='" + responseFromProvider + '\'' +
+               ", timestamp=" + timestamp +
+               '}';
+    }
 }
