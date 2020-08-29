@@ -75,8 +75,7 @@ public class Customer
     @Column(name = "email")
     private String email;
 
-    @OneToOne(mappedBy = "customer")
-    @JoinColumn
+    @OneToOne(mappedBy = "customer", optional = false)
     private User user;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -105,8 +104,6 @@ public class Customer
                ", birthDate=" + birthDate +
                ", phoneNumber='" + phoneNumber + '\'' +
                ", email='" + email + '\'' +
-               ", orders=" + order.size() +
-               ", addresses=" + address.size() +
                '}';
     }
 }
