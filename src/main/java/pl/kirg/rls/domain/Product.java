@@ -60,4 +60,19 @@ public class Product
     @Column(updatable = false)
     private final Timestamp timestamp;
 
+    @Override
+    public String toString()
+    {
+        return "Product{" +
+               "id=" + id +
+               ", name='" + name + '\'' +
+               ", shortDescription='" + shortDescription + '\'' +
+               ", fullDescription='" + fullDescription + '\'' +
+               ", qty=" + qty +
+               ", availabilityInHours=" + availabilityInHours +
+               ", price=" + price +
+               ", discountPercent=" + discountPercent +
+               ", timestamp=" + timestamp +
+               '}';
+    }
 }
