@@ -40,7 +40,7 @@ public class Payment
     @CreationTimestamp
     @DateTimeFormat
     @Column(updatable = false)
-    private final Timestamp timestamp;
+    private final Timestamp registered;
 
     @Override
     public String toString()
@@ -49,7 +49,7 @@ public class Payment
                "id=" + id +
                ", paymentStatus=" + paymentStatus +
                ", responseFromProvider='" + responseFromProvider + '\'' +
-               ", timestamp=" + timestamp +
+               ", timestamp=" + registered +
                '}';
     }
 }
