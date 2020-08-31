@@ -23,7 +23,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -37,8 +36,7 @@ import javax.validation.constraints.Size;
                                {
                                        "first_name",
                                        "last_name",
-                                       "phone_number",
-                                       "email"
+                                       "phone_number"
                                }
                )
 )
@@ -70,17 +68,12 @@ public class Customer
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @NotNull
-    @Email
-    @Column(name = "email")
-    private String email;
-
     @OneToOne(mappedBy = "customer", optional = false)
     private User user;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable
-            (name = "customers_ct_orders",
+            (name = "customers_orders",
              joinColumns = @JoinColumn(name = "customer_id"),
              inverseJoinColumns = @JoinColumn
             )
@@ -88,7 +81,7 @@ public class Customer
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable
-            (name = "customers_ct_addressess",
+            (name = "customers_addresses",
              joinColumns = @JoinColumn(name = "customer_id"),
              inverseJoinColumns = @JoinColumn
             )
@@ -103,7 +96,6 @@ public class Customer
                ", lastName='" + lastName + '\'' +
                ", birthDate=" + birthDate +
                ", phoneNumber='" + phoneNumber + '\'' +
-               ", email='" + email + '\'' +
                '}';
     }
 }

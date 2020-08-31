@@ -8,14 +8,14 @@ import pl.kirg.rls.domain.User;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>
+public interface UserRepository extends JpaRepository<User, String>
 {
 
     Optional<User> findByUsername(String username);
 
-    Iterable<? extends User> findUserByCustomerLastNameAndEnabledIsTrue(String lastName);
+    Optional<User> findUserByEmail(String email);
 
-    Optional<User> findUserByCustomerEmail(String email);
+    Iterable<? extends User> findUserByCustomerLastNameAndEnabledIsTrue(String lastName);
 
     Optional<User> findUserByCustomerPhoneNumber(String phoneNumber);
 }
