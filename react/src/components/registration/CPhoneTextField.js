@@ -4,7 +4,7 @@ import { If, Then, ElseIf, Else } from 'react-if-elseif-else-render';
 function CPhoneTextField(props){
     return(
         <div>
-             <If condition={props.accountType === "company"  && props.companyNumberError}>
+             <If condition={props.accountType === "company"  && props.error}>
                  <Then>
                      <TextField
                          margin="normal"
@@ -14,11 +14,11 @@ function CPhoneTextField(props){
                          name="companyNumber"
                          value={props.value}
                          onChange={props.onChange}
-                         error={props.companyNumberError}
-                         helperText="Phone number must contain 9 digits"
+                         error={props.error}
+                         helperText="Phone number must be between 6 and 15 digits"
                      />
                  </Then>
-                 <ElseIf condition={props.accountType === "company"&& !props.companyNumberError}>
+                 <ElseIf condition={props.accountType === "company"&& !props.error}>
                      <TextField
                          margin="normal"
                          id="companyNumber"
@@ -27,7 +27,7 @@ function CPhoneTextField(props){
                          name="companyNumber"
                          value={props.value}
                          onChange={props.onChange}
-                         error={props.companyNumberError}
+                         error={props.error}
                      />
                  </ElseIf>
              </If>

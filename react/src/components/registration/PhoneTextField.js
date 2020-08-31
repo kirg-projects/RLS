@@ -4,7 +4,7 @@ import { TextField} from '@material-ui/core';
 function PhoneTextField(props){
     return(
         <div>
-            {props.phoneError ?
+            {props.error ?
                 <TextField
                     margin="normal"
                     id="phone"
@@ -13,7 +13,7 @@ function PhoneTextField(props){
                     name="phone"
                     value={props.value}
                     error={props.error}
-                    helperText="Phone number must contain 9 digits"
+                    helperText="Phone number must be between 6 and 15 digits"
                     onChange={props.onChange}
                 />
                 : <TextField

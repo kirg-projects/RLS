@@ -4,27 +4,54 @@ import { TextField} from '@material-ui/core';
 function LoginTextField(props){
     return(
         <div>
-              <TextField
-                 margin="normal"
-                 id="login"
-                 type="text"
-                 label="Login"
-                 name="login"
-                 value={props.login}
-                 onChange={props.onChange}
-                  InputProps={{
-                      style:{
-                          marginTop:"22%",
-                          marginLeft:"5%"
-                      }
-                  }}
-                  InputLabelProps={{
-                     style:{
-                         marginTop:"13%",
-                         marginLeft:"5%"
-                     }
-                  }}
-              />
+            {props.error ?
+                <TextField
+                    margin="normal"
+                    id="login"
+                    type="text"
+                    label="Login"
+                    name="login"
+                    value={props.login}
+                    error={props.error}
+                    helperText="Required field"
+                    onChange={props.onChange}
+                    InputProps={{
+                        style:{
+                            marginTop:"22%",
+                            marginLeft:"5%"
+                        }
+                    }}
+                    InputLabelProps={{
+                        style:{
+                            marginTop:"13%",
+                            marginLeft:"5%"
+                        }
+                    }}
+                />
+                : <TextField
+                      margin="normal"
+                      id="login"
+                      type="text"
+                      label="Login"
+                      name="login"
+                      value={props.login}
+                      error={props.error}
+                      onChange={props.onChange}
+                      InputProps={{
+                          style:{
+                              marginTop:"22%",
+                              marginLeft:"5%"
+                          }
+                      }}
+                      InputLabelProps={{
+                          style:{
+                              marginTop:"13%",
+                              marginLeft:"5%"
+                          }
+                      }}
+                  />
+            }
+
          </div>
     )
 }
