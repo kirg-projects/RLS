@@ -47,15 +47,22 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        <!--		    JPA & FLYWAY		-->
+        <!--		    DB & DAO    		-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.xerial</groupId>
-            <artifactId>sqlite-jdbc</artifactId>
-            <version>3.32.3</version>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <scope>compile</scope>
+            <optional>false</optional>
+            <version>6.1.5.Final</version>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
@@ -65,12 +72,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
         </dependency>
         <!--		    TESTS				-->
         <dependency>
@@ -108,8 +109,8 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>6.4.4</version>
                 <configuration>
-                    <url>jdbc:sqlite:./target/rlsdb</url>
-                    <user>SA</user>
+                    <url>jdbc:hsqldb:file:./target/hypersql</url>
+                    <user>root</user>
                 </configuration>
             </plugin>
         </plugins>
