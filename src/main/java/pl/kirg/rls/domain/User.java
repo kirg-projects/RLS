@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import pl.kirg.rls.Manager;
 
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -75,6 +76,14 @@ public class User implements UserDetails
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Customer customer;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Manager manager;
+
+    public User(Timestamp timestamp)
+    {
+        this.timestamp = timestamp;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities()
     {
@@ -91,6 +100,71 @@ public class User implements UserDetails
     public String getUsername()
     {
         return this.username;
+    }
+
+    private void setUsername(String username)
+    {
+        this.username = username;
+    }
+
+    private void setPassword(String password)
+    {
+        this.password = password;
+    }
+
+    private String getEmail()
+    {
+        return email;
+    }
+
+    private void setEmail(String email)
+    {
+        this.email = email;
+    }
+
+    private Boolean getEnabled()
+    {
+        return enabled;
+    }
+
+    private void setEnabled(Boolean enabled)
+    {
+        this.enabled = enabled;
+    }
+
+    private Timestamp getTimestamp()
+    {
+        return timestamp;
+    }
+
+    private Authority getAuthority()
+    {
+        return authority;
+    }
+
+    private void setAuthority(Authority authority)
+    {
+        this.authority = authority;
+    }
+
+    private Customer getCustomer()
+    {
+        return customer;
+    }
+
+    private void setCustomer(Customer customer)
+    {
+        this.customer = customer;
+    }
+
+    private Manager getManager()
+    {
+        return manager;
+    }
+
+    private void setManager(Manager manager)
+    {
+        this.manager = manager;
     }
 
     @Override
