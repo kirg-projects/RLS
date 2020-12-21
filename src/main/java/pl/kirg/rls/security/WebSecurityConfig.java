@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -21,10 +22,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 
     @Autowired
     @Qualifier("getDataSource")
-    DataSource dataSource;
+    private DataSource dataSource;
 
     @Bean
-    BCryptPasswordEncoder getPasswordEncoder()
+    PasswordEncoder getPasswordEncoder()
     {
         return new BCryptPasswordEncoder();
     }
@@ -34,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
     {
         auth.jdbcAuthentication()
             .dataSource(dataSource)
+            .passwordEncoder(getPasswordEncoder())
             .usersByUsernameQuery("select username,password,enabled from users where username = ?")
             .authoritiesByUsernameQuery("select username,authority from authorities where username = ?");
     }
@@ -43,7 +45,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
     {
 
         http.authorizeRequests()
-            .antMatchers("/")
+            .antMatchers("/admin")
+            .hasRole("ADMIN")
+            .and()
+            .authorizeRequests()
+            .requestMatchers(EndpointRequest.toAnyEndpoint())
+            .hasRole("ENDPOINT_ADMIN");
+
+        http.authorizeRequests()
+            .antMatchers("/", "/**")
+
             .permitAll();
 
         http.sessionManagement()
@@ -70,13 +81,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
             .authorizeRequests()
             .antMatchers("/partner")
             .hasRole("PARTNER");
-
-        http.authorizeRequests()
-            .antMatchers("/admin")
-            .hasRole("ADMIN")
-            .and()
-            .authorizeRequests()
-            .requestMatchers(EndpointRequest.toAnyEndpoint())
-            .hasRole("ENDPOINT_ADMIN");
     }
 }
