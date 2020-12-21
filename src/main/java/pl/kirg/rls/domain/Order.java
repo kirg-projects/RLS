@@ -2,8 +2,10 @@ package pl.kirg.rls.domain;
 
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -30,6 +32,8 @@ import javax.validation.constraints.NotNull;
 @Data
 @Entity(name = "CT_orders")
 @NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
+@Getter
+@Setter
 public class Order
 {
 
@@ -75,6 +79,11 @@ public class Order
             )
     @JoinColumn(name = "payment_id", updatable = false)
     private Payment payment;
+
+    public Order(Timestamp created)
+    {
+        this.created = created;
+    }
 
     @Override
     public String toString()

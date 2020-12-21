@@ -5,13 +5,17 @@ import javax.persistence.Table;
 import javax.persistence.*;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import lombok.Setter;
 import pl.kirg.rls.domain.User;
 
 @Entity
 @Table(name = "manager")
 @NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
+@Getter
+@Setter
 public class Manager
 {
 
@@ -29,26 +33,6 @@ public class Manager
 
     // @OneToMany()
     // private List<Company> companies;
-
-    private long getIdManager()
-    {
-        return idManager;
-    }
-
-    private void setIdManager(long idManager)
-    {
-        this.idManager = idManager;
-    }
-
-    private User getUser()
-    {
-        return user;
-    }
-
-    private void setUser(User user)
-    {
-        this.user = user;
-    }
 
     @Override
     public String toString()

@@ -2,8 +2,10 @@ package pl.kirg.rls.domain;
 
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
@@ -21,6 +23,8 @@ import javax.validation.constraints.NotNull;
 @Data
 @Entity(name = "products")
 @NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
+@Getter
+@Setter
 public class Product
 {
 
@@ -59,6 +63,11 @@ public class Product
     @CreationTimestamp
     @Column(updatable = false)
     private final Timestamp timestamp;
+
+    public Product(Timestamp timestamp)
+    {
+        this.timestamp = timestamp;
+    }
 
     @Override
     public String toString()

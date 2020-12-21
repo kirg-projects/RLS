@@ -2,8 +2,10 @@ package pl.kirg.rls.domain;
 
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
@@ -41,6 +43,8 @@ import javax.validation.constraints.Size;
                )
 )
 @NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
+@Getter
+@Setter
 public class Customer
 {
 

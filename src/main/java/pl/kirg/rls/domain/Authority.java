@@ -2,6 +2,8 @@ package pl.kirg.rls.domain;
 
 import lombok.Data;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
@@ -21,6 +23,8 @@ import javax.validation.constraints.NotNull;
          uniqueConstraints =
          @UniqueConstraint(name = "UNQ_USERNAME_AUTHORITY", columnNames = {"username", "authority"})
         )
+@Getter
+@Setter
 public class Authority implements GrantedAuthority
 {
 
