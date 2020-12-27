@@ -5,8 +5,11 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,37 +18,46 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Data
 @Entity
-@Table(name = "manager")
-@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
+@Table(name = "company")
 @Getter
 @Setter
-public class Manager
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
+public class Company
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToOne(cascade = {
+    @Column(name = "name")
+    private String name;
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Product> products;
+    @ManyToOne(cascade = {
             CascadeType.DETACH,
             CascadeType.MERGE,
             CascadeType.PERSIST,
             CascadeType.REFRESH})
-    @JoinColumn(name = "user_id")
-    private User user;
-    @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
-    private List<Company> companies;
+    @JoinColumn(name = "manager_id")
+    private Manager manager;
+    @DateTimeFormat
+    @CreationTimestamp
+    @Column(name = "created", updatable = false)
+    private Timestamp created;
 
     @Override
     public String toString()
     {
-        return "Manager{" +
+        return "Company{" +
                "id=" + id +
-               ", user=" + user +
+               ", name='" + name + '\'' +
+               ", products=" + products +
+               ", manager=" + manager +
+               ", created=" + created +
                '}';
     }
 }

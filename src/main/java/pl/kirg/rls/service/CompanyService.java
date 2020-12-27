@@ -2,21 +2,19 @@ package pl.kirg.rls.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.kirg.rls.Manager;
 import pl.kirg.rls.domain.Company;
-import pl.kirg.rls.repository.ManagerRepository;
+import pl.kirg.rls.repository.CompanyRepository;
 
 @Service
-public class ManagerService
+public class CompanyService
 {
     @Autowired
-    ManagerRepository managerRepository;
+    CompanyRepository companyRepository;
 
-    public Manager addManager(Manager manager) {
+    public Company addCompany(Company company) {
         return null;
     }
-    public boolean removeManager(long managerId) {
+    public boolean removeCompany(long companyId) {
         return false;
     }
-
 }
