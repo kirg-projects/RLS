@@ -5,6 +5,8 @@ import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +34,8 @@ public class Authority implements GrantedAuthority
     private Long id;
 
     @NotNull
-    private String authority;
+    @Enumerated(EnumType.STRING)
+    private AuthName authority;
 
     @OneToOne(optional = false)
     @JoinColumn(name = "username")
@@ -41,7 +44,7 @@ public class Authority implements GrantedAuthority
     @Override
     public String getAuthority()
     {
-        return this.authority;
+        return authority.toString();
     }
 
     @Override
