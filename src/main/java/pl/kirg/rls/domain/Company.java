@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.CascadeType;
@@ -34,6 +35,7 @@ public class Company
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "name")
+    @Length(max = 50)
     private String name;
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Product> products;
@@ -42,12 +44,30 @@ public class Company
             CascadeType.MERGE,
             CascadeType.PERSIST,
             CascadeType.REFRESH})
-    @JoinColumn(name = "manager_id")
-    private Manager manager;
+    @JoinColumn(name = "owner")
+    private Manager owner;
     @DateTimeFormat
     @CreationTimestamp
     @Column(name = "created", updatable = false)
     private Timestamp created;
+    @Column(name = "nip")
+    @Length(max = 10)
+    private int nip;
+    @Column(name = "country")
+    @Length(max = 50)
+    private String country;
+    @Column(name = "postal_code")
+    @Length(max = 20)
+    private String postalCode;
+    @Column(name = "City")
+    @Length(max = 50)
+    private String city;
+    @Column(name = "street")
+    @Length(max = 50)
+    private String street;
+    @Column(name = "contact_number")
+    @Length(max = 9)
+    private int contactNumber;
 
     @Override
     public String toString()
@@ -56,8 +76,14 @@ public class Company
                "id=" + id +
                ", name='" + name + '\'' +
                ", products=" + products +
-               ", manager=" + manager +
+               ", owner=" + owner +
                ", created=" + created +
+               ", nip=" + nip +
+               ", country='" + country + '\'' +
+               ", postalCode='" + postalCode + '\'' +
+               ", city='" + city + '\'' +
+               ", street='" + street + '\'' +
+               ", contactNumber=" + contactNumber +
                '}';
     }
 }

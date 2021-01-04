@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -37,7 +36,7 @@ public class Manager
             CascadeType.REFRESH})
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
     private List<Company> companies;
 
     @Override
