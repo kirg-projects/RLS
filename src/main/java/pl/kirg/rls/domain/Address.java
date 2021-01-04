@@ -2,8 +2,10 @@ package pl.kirg.rls.domain;
 
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import lombok.Setter;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.Column;
@@ -19,6 +21,8 @@ import javax.validation.constraints.Size;
 @Data
 @Table(name = "CT_addresses")
 @NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
+@Getter
+@Setter
 public class Address
 {
 
